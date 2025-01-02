@@ -12,4 +12,20 @@
  * 9. You may not use this code in any harmful or malicious way.
  *10. For more details, please contact: [pawanpediredla@gmail.com]
  */
- 
+module.exports=function configureCSR(config,env){
+    if(env === "production"){
+        config.optimization.splitChunks = {chunks}
+        config.output.filename = '[name].[contenthash].js';
+        config.optimization.runtimeChunk = 'single';
+    console.log('CSR :Production fixes applied')}
+    else{
+        config.devTool = 'eval-source-map'
+        config.mode='development'
+        config.devServer  =  {
+            hot:true,open:true
+        }
+    }
+    return config;
+}
+
+
